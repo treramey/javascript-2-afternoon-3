@@ -26,6 +26,10 @@
   Write a function called first that takes in two parameters, an array and a callback function.
   Then invoke the callback function, passing in the first element in the array as it's argument.
 */
+function first(arr,cb) {
+  cb(arr[0]);
+  
+}
 
 // Code Here 
 
@@ -46,7 +50,9 @@ first(names, function(firstName){
   Write a function called last that takes in an array and a callback function. 
   Then invoke the callback, passing in the last element in the array as the argument.
 */
-
+function last(arr,cb) {
+  cb(arr[arr.length -1]);
+}
 //Code Here
 
 // Do not edit the code below.
@@ -65,6 +71,9 @@ last(names, function(lastName){
   Invoke the callback, passing in the product of the two numbers multiplied as the argument. 
 */
 
+function multiply(x,y,cb) {
+  cb(x*y);
+}
 //Code Here
 
 // Do not edit the code below.
@@ -85,6 +94,13 @@ multiply(4, 3, function(answer){
 */
 
 //Code Here 
+function contains(arr, name , cb) {
+  if ( arr.includes(name)){
+    cb(true);
+  }else{
+    cb(false);
+  }
+}
 
 // Do not edit the code below.
 contains(names, 'Colt', function(result){
@@ -107,6 +123,18 @@ contains(names, 'Colt', function(result){
 
 //Code Here
 
+function uniq(arr,cb) {
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] === arr[j]){
+        arr.splice(j,1);
+      }
+    }
+  }
+  return cb(arr)
+}
+
 // Do not edit the code below.
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
@@ -124,6 +152,12 @@ uniq(names, function(uniqArr){
 
 //Code Here 
 
+function each(arr,cb) {
+  for (let i = 0; i < arr.length; i++) {
+    cb(arr[i], i);
+  }
+}
+
 // Do not edit the code below.
 each(names, function(item, indice){
   console.log('The item in the ' + indice + ' position is ' + item)
@@ -140,6 +174,13 @@ each(names, function(item, indice){
 */
 
 // Code here
+function getUserById(users, id, cb) {
+  for (let i = 0; i < users.length; i++) {
+    if (users[i].id === id) {
+      cb(users[i]);
+    }
+  }
+}
 
 // Do not edit the code below.
 var users = [
@@ -162,6 +203,7 @@ var users = [
     address: '192 East 32 North'
   },
 ];
+console.log(users[1])
 
 getUserById(users, '16t', function(user){
   console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address); 
